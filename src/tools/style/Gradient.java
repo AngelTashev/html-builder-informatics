@@ -1,6 +1,6 @@
-package tools;
+package tools.style;
 
-public class Gradient {
+public class Gradient implements Style {
 
     private StringBuilder gradient;
 
@@ -14,8 +14,8 @@ public class Gradient {
             "-webkit-text-fill-color: transparent; ", direction, starting, ending));
     }
 
-    public String getGradient() {
+    @Override
+    public String getStyle() {
         return this.gradient.toString();
     }
-
 }

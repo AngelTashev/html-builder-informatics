@@ -1,5 +1,7 @@
 package tools;
 
+import tools.style.Style;
+
 public class CSSBuilder {
 
     private StringBuilder styleBuilder;
@@ -8,10 +10,12 @@ public class CSSBuilder {
         this.styleBuilder = new StringBuilder();
     }
 
-    public void addStyle(String key, String value, Gradient gradient) {
+    public void addStyle(String key, String value, Style[] styles) {
         this.styleBuilder.append(String.format("%s {%s", key, value));
-        if (gradient != null) {
-            this.styleBuilder.append(gradient.getGradient());
+        if (styles != null) {
+            for (Style style : styles) {
+                this.styleBuilder.append(style.getStyle());
+            }
         }
         this.styleBuilder.append("}");
     }

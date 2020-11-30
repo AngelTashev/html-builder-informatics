@@ -1,6 +1,8 @@
 import tools.CSSBuilder;
-import tools.Gradient;
+import tools.style.Border;
+import tools.style.Gradient;
 import tools.HTMLBuilder;
+import tools.style.Style;
 
 import java.io.IOException;
 
@@ -13,14 +15,19 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         // Encapsulation
+        // Abstraction
+        // Polymorphism
 
-        CSSBuilder style = new CSSBuilder();
+        CSSBuilder styleBuilder = new CSSBuilder();
 
         Gradient gradient = new Gradient();
         gradient.setGradient("180","red", "yellow");
 
-        style.addStyle("h1", H1_STYLE, gradient);
-        style.addStyle("body", "background-color: #777777;", null);
+        Border border = new Border();
+        border.setBorder("solid", "4px", "red");
+
+        styleBuilder.addStyle("h1", H1_STYLE, new Style[] { gradient, border });
+        styleBuilder.addStyle("body", "background-color: #777777;", null);
 
         HTMLBuilder builder = new HTMLBuilder(FILE_PATH);
 
@@ -28,7 +35,7 @@ public class Main {
 
         builder.openTag("head");
         builder.addTag("title", "Informatics");
-        builder.addStyle(style);
+        builder.addStyle(styleBuilder);
         builder.closeTag("head");
 
         builder.openTag("body");
